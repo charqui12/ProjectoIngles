@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Proyecto Inglés{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h1>Kids English 🧸</h1>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/vocabulario">Vocabulario</a></li>
+            <li><a href="/juegos">Juegos</a></li>
+        </ul>
+    </nav>
+
+    <!-- CONTENIDO DINÁMICO -->
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
