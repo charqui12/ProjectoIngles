@@ -3,15 +3,51 @@
 {% block title %}Vocabulario{% endblock %}
 
 {% block content %}
-<h2>Vocabulario 📝</h2>
-<p>Selecciona una categoría para aprender nuevas palabras:</p>
+<h2 class="fw-bold text-center" 
+    style="background: #fff3bf; display:inline-block; padding: 8px 18px; 
+           border-radius: 12px; color:#7c5e10;">
+    📝 Vocabulario
+</h2>
 
-<ul>
-    <li>Animales 🐶</li>
-    <li>Colores 🎨</li>
-    <li>Comida 🍎</li>
-    <li>Ropa 👕</li>
+<h2 class="fw-bold text-center"
+   style="background: #fff3bf; display:inline-block; padding: 8px 18px; 
+    border-radius: 12px; color: burlywood;">
+    
+Selecciona una categoría para aprender nuevas palabras:
+</h2>
+
+<ul class="list-unstyled d-flex flex-column gap-3 mt-3">
+
+    <li>
+        <button type="button" class="btn btn-success w-100 d-flex align-items-center gap-2">
+            <i class="fa-solid fa-paw"></i> 
+            Animales
+        </button>
+    </li>
+
+    <li>
+        <button type="button" class="btn btn-warning w-100 d-flex align-items-center gap-2">
+            <i class="fa-solid fa-burger"></i> 
+            Comida
+        </button>
+    </li>
+
+    <li>
+        <button type="button" class="btn btn-primary w-100 d-flex align-items-center gap-2">
+            <i class="fa-solid fa-shirt"></i> 
+            Ropa
+        </button>
+    </li>
+
+    <li>
+        <button type="button" class="btn btn-info w-100 d-flex align-items-center gap-2">
+            <i class="fa-solid fa-palette"></i> 
+            Colores
+        </button>
+    </li>
+
 </ul>
+
 {% endblock %}
 
 

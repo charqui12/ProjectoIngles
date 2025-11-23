@@ -29,11 +29,12 @@ body {
 }
 
 .card {
-    background: white;
+    
+    background: rgb(114, 37, 37);
     padding: 20px;
     width: 300px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(93, 17, 17, 0.1);
 }
 
 .btn {
@@ -45,3 +46,142 @@ body {
     text-decoration: none;
     border-radius: 6px;
 }
+.navbar h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.navbar ul li {
+    padding: 5px 10px;
+    transition: background 0.3s;
+    border-radius: 6px;
+}
+
+.navbar ul li:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+ul {
+    
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+ul li {
+    font-size: 18px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eeeeee;
+    text-align: center;
+}
+
+ul li:last-child {
+    border-bottom: none;
+}
+.btn {
+    margin-top: 10px;
+    background: #4a90e2;
+    padding: 12px 20px;
+    display: inline-block;
+    color: white;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.btn:hover {
+    background: #357ABD;
+    transform: scale(1.05);
+}
+.container {
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.titulo-cartoon {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #ffca3a;
+    text-shadow: 
+        3px 3px 0px #ff595e,
+        6px 6px 0px rgba(0,0,0,0.2);
+}
+
+.titulo-animado {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #535a64;
+    animation: flotar 2s ease-in-out infinite;
+}
+
+@keyframes flotar {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
+
+
+.titulo-kids {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ff6f61;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    font-family: 'Comic Sans MS', 'Fredoka', sans-serif;
+    text-align: center;
+}
+
+.card-kids {
+    background: #ffffffcc; /* blanco translúcido */
+    backdrop-filter: blur(8px);
+    padding: 30px;
+    width: 350px;
+    border-radius: 18px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.15);
+    border: 2px solid rgba(255,255,255,0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-kids:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.card-title-kids {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #ff6f61;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    font-family: 'Comic Sans MS', 'Fredoka', sans-serif;
+}
+
+/* Botones */
+.btn-kids {
+    display: block;
+    margin: 10px auto;
+    padding: 12px 18px;
+    background: #6ba8ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 80%;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-kids:hover {
+    background: #4b91ff;
+    transform: scale(1.05);
+}
+
+
+
+
+
+
+
+
+
