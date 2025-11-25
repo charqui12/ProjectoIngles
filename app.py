@@ -10,6 +10,10 @@ def home():
 def vocabulario():
     return render_template("bocabulario.html")
 
+@app.route("/animales")
+def animales():
+    return render_template("animales.html")
+
 @app.route("/juegos")
 def juegos():
     return render_template("juegos.html")
