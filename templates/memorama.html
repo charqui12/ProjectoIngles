@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <title>Memorama</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f8ff;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        /* CONTENEDOR DEL MEMORAMA */
+        .tablero {
+            width: 420px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        /* TARJETAS */
+        .card {
+            width: 100px;
+            height: 140px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            perspective: 1000px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* Texto de vocabulario */
+        .texto-ingles {
+            position: absolute;
+            bottom: -22px;
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #444;
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        .card.volteada .texto-ingles {
+            opacity: 1;
+        }
+
+        .inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .card.volteada .inner {
+            transform: rotateY(180deg);
+        }
+
+        .front, .back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            border-radius: 15px;
+        }
+
+        /* Parte de atrás */
+        .back {
+            background: #8bc6ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: white;
+        }
+
+        /* Parte de adelante (imagen) */
+        .front {
+            transform: rotateY(180deg);
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+
+<h2>
+    <i class="fa-solid fa-language"></i>
+    Juega memoria y aprende inglés
+    
+</h2>
+
+
+<div class="tablero" id="tablero"></div>
+
+
+<!-- SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    // ============================================================
+    //  1. LISTA DE IMÁGENES + NOMBRES EN INGLÉS
+    // ============================================================
+    const tarjetas = [
+        { img: "/static/img/bike.webp", palabra: "bike" },
+        { img: "/static/img/car.webp", palabra: "car" },
+        { img: "/static/img/house.webp", palabra: "house" },
+        { img: "/static/img/mause.webp", palabra: "mouse" }
+    ];
+
+    // Duplicar para hacer parejas
+    let imagenes = [...tarjetas, ...tarjetas];
+
+    // Mezclar
+    imagenes.sort(() => Math.random() - 0.5);
+
+    // ============================================================
+    //  2. CREAR TABLERO
+    // ============================================================
+    const tablero = document.getElementById("tablero");
+    let primera = null;
+    let segunda = null;
+    let bloqueo = false;
+    let parejas = 0;
+
+    imagenes.forEach(data => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.dataset.imagen = data.img;
+        card.dataset.palabra = data.palabra;
+
+        card.innerHTML = `
+            <div class="inner">
+                <div class="front" style="background-image: url('${data.img}');"></div>
+                <div class="back">?</div>
+            </div>
+
+            <div class="texto-ingles">${data.palabra}</div>
+        `;
+
+        card.addEventListener("click", () => voltear(card));
+        tablero.appendChild(card);
+    });
+
+    // ============================================================
+    // .  3 VOLTEAR TARJETA
+    // ============================================================
+    function voltear(card) {
+        if (bloqueo || card === primera || card.classList.contains("volteada")) return;
+
+        card.classList.add("volteada");
+
+        if (!primera) {
+            primera = card;
+        } else {
+            segunda = card;
+            verificarPareja();
+        }
+    }
+
+    // ============================================================
+    // 4. VERIFICAR PAREJA
+    // ============================================================
+    function verificarPareja() {
+        bloqueo = true;
+
+        let img1 = primera.dataset.imagen;
+        let img2 = segunda.dataset.imagen;
+
+        if (img1 === img2) {
+            
+            Swal.fire({
+                title: "¡Correct!",
+                text: `This is a "${primera.dataset.palabra}"`,
+                icon: "success",
+                timer: 1200,
+                showConfirmButton: false
+            });
+
+            parejas++;
+            primera = null;
+            segunda = null;
+            bloqueo = false;
+
+            // Ganaste
+           if (parejas === 4) {
+    Swal.fire({
+        title: '<i class="fa-solid fa-trophy" style="font-size: 40px; color: #f1c40f;"></i><br>¡Ganaste!',
+        text: "Has encontrado todas las parejas.",
+        confirmButtonText: "Jugar de nuevo"
+    }).then(() => location.reload());
+}
+
+
+        } else {
+            
+            setTimeout(() => {
+                primera.classList.remove("volteada");
+                segunda.classList.remove("volteada");
+                primera = null;
+                segunda = null;
+                bloqueo = false;
+            }, 900);
+        }
+    }
+</script>
+
+</body>
+</html>

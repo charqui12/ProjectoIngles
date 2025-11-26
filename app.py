@@ -26,6 +26,9 @@ def colores():
 @app.route("/juegos")
 def juegos():
     return render_template("juegos.html")
+@app.route("/memorama")
+def memorama():
+    return render_template("memorama.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
